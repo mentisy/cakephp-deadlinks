@@ -27,7 +27,7 @@ class Plugin extends BasePlugin
         parent::__construct($options);
 
         try {
-            Configure::load('Deadlinks');
+            Configure::load('deadlinks');
         } catch (CakeException $ex) {
             throw new MissingConfigException(
                 'Configuration key `Deadlinks` was not found. Please add a `deadlinks.php` '

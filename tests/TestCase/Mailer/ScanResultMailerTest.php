@@ -29,7 +29,7 @@ class ScanResultMailerTest extends TestCase
     protected function setUp(): void
     {
         $this->ScanResultMailer = new ScanResultMailer();
-        Configure::load('Deadlinks');
+        Configure::load('deadlinks');
         parent::setUp();
     }
 
