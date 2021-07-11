@@ -125,7 +125,7 @@ class ScanCommandTest extends TestCase
         $this->assertOutputContainsRow(['id', '1', 'link', 'https://a-dead-link-here.no']);
 
         // These links exist in the table, but are alive, so should NEVER be present in any output
-        $this->assertOutputNotContains('http://localhost');
+        $this->assertOutputNotContains('https://google.com');
         $this->assertOutputNotContains('https://google.co');
     }
 
