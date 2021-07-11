@@ -1,0 +1,29 @@
+__DATETIME__PLACEHOLDER__ Notice: A scan of dead links was performed. 3 tables were scanned.
+==========================================
+----- Files -----
+
+Field: linkTwo
+Value: https://a-dead-link-here.no
+PrimaryKey: id
+PrimaryKeyValue: 1
+
+Field: linkOne
+Value: https://a-dead-link-here.no
+PrimaryKey: id
+PrimaryKeyValue: 2
+
+Field: linkTwo
+Value: https://a-dead-link-here-too.no
+PrimaryKey: id
+PrimaryKeyValue: 2
+
+----- Links -----
+No dead links found.
+
+----- Resources -----
+
+Field: link
+Value: https://a-dead-link-here.no
+PrimaryKey: id
+PrimaryKeyValue: 1
+

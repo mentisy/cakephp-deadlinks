@@ -1,0 +1,10 @@
+parameters:
+    level: 6
+    bootstrapFiles:
+        - tests/bootstrap.php
+        - vendor/cakephp/cakephp/src/basics.php
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    paths:
+        - src
+
