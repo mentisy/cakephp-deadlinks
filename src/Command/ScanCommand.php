@@ -146,7 +146,7 @@ class ScanCommand extends Command
                 $message .= "\n";
             }
         }
-        $this->log($message, LOG_INFO, ['scope' => 'deadlinks']);
+        $this->log($message, 'info', ['scope' => 'deadlinks']);
     }
 
     /**

@@ -41,7 +41,7 @@ class FilesFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'A Dead Link and an Alive Link',
-                'linkOne' => 'http://localhost',
+                'linkOne' => 'https://google.com',
                 'linkTwo' => 'https://a-dead-link-here.no',
             ],
             [

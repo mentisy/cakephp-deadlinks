@@ -44,8 +44,8 @@ class ResourcesFixture extends TestFixture
             ],
             [
                 'id' => 2,
-                'name' => 'Localhost',
-                'link' => 'http://localhost',
+                'name' => 'Google',
+                'link' => 'https://google.com',
             ],
             [
                 'id' => 3,

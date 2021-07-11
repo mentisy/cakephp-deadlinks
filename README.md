@@ -85,4 +85,6 @@ To run the scanner, execute this command in your terminal
 * Output to log file: `bin\cake scan -l`
 * Output to an email: `bin\cake scan -m`
 
+You can also ouput several methods. For both terminal and log file, run `bin\cake scan -t -l`.
+
 For help, run `bin\cake scan -h`
