@@ -1,5 +1,7 @@
 # Deadlinks CakePHP Plugin
 
+[![Deadlinks CI](https://github.com/mentisy/cakephp-deadlinks/actions/workflows/ci.yml/badge.svg)](https://github.com/mentisy/cakephp-deadlinks/actions/workflows/ci.yml)
+
 Scan links inside your database records to make sure they're not dead.
 
 The links you once inserted into your database may not work in the future. This plugin
