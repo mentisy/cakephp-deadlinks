@@ -74,6 +74,9 @@ class UrlScanner
         curl_setopt($ch, CONNECTION_TIMEOUT, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'User-Agent: Dead Links URL scanner',
+        ]);
 
         return $ch;
     }
