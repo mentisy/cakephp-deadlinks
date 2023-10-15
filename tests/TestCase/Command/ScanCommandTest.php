@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Command;
 
 use Avolle\Deadlinks\Exception\MissingConfigException;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use DateTimeImmutable;
@@ -22,19 +22,13 @@ class ScanCommandTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var array<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'plugin.Avolle/Deadlinks.Files',
         'plugin.Avolle/Deadlinks.Links',
         'plugin.Avolle/Deadlinks.Resources',
     ];
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->useCommandRunner();
-    }
 
     /**
      * Test buildOptionParser method

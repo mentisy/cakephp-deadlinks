@@ -10,11 +10,11 @@ on:
 
 jobs:
   testsuite:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0']
+        php-version: ['8.1']
     name: PHP ${{ matrix.php-version }}
 
     steps:
@@ -29,11 +29,7 @@ jobs:
 
       - name: Composer install
         run: |
-          if [[ ${{ matrix.php-version }} == '8.0' ]]; then
-            composer install --ignore-platform-reqs
-          else
             composer install
-          fi
 
       - name: Run PHPUnit
         run: |
@@ -41,7 +37,7 @@ jobs:
 
   coding-standard:
     name: Coding Standard
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -49,7 +45,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
           extensions: mbstring
           coverage: none
 
@@ -61,7 +57,7 @@ jobs:
 
   static-analysis:
     name: Static Analysis
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -69,12 +65,12 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
           extensions: mbstring
           coverage: none
 
       - name: Composer install
-        run: composer require --dev phpstan/phpstan:^0.12
+        run: composer require --dev phpstan/phpstan:^1.9
 
       - name: Run phpstan
         run: vendor/bin/phpstan.phar analyse

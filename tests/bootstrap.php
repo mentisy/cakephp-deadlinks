@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Database\Connection;
+use Cake\Database\Driver\Sqlite;
 use Cake\Datasource\ConnectionManager;
-use Cake\I18n\FrozenDate;
+use Cake\I18n\DateTime;
 use Cake\Mailer\TransportFactory;
+use Cake\TestSuite\Fixture\SchemaLoader;
 
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
@@ -26,7 +29,7 @@ const CONFIG = __DIR__ . DS . 'test_app' . DS . 'config' . DS;
 const TESTS = __DIR__ . DS;
 const TEST_FILES = TESTS . 'test_files' . DS;
 
-ini_set('intl.default_locale', 'de-DE');
+ini_set('intl.default_locale', 'nb_NO');
 
 require PLUGIN_ROOT . '/vendor/autoload.php';
 require CORE_PATH . 'config/bootstrap.php';
@@ -36,8 +39,28 @@ Configure::write('debug', true);
 Configure::write('App', [
     'namespace' => 'TestApp',
     'encoding' => 'UTF-8',
-    'defaultLocale' => env('APP_DEFAULT_LOCALE', 'nb_NO'),
-    'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Europe/Oslo'),
+    'defaultLocale' => 'nb_NO',
+    'defaultTimezone' => 'APP_DEFAULT_TIMEZONE', 'Europe/Oslo',
+]);
+
+if (!getenv('db_dsn')) {
+    putenv('db_dsn=sqlite:///:memory:');
+}
+
+ConnectionManager::setConfig('test', [
+    'url' => getenv('db_dsn'),
+    'username' => 'root',
+    'password' => 'root',
+    'database' => 'title',
+    'className' => Connection::class,
+    'driver' => Sqlite::class,
+    'persistent' => false,
+    'timezone' => 'UTC',
+    'encoding' => 'utf8',
+    'flags' => [],
+    'cacheMetadata' => true,
+    'quoteIdentifiers' => false,
+    'log' => false,
 ]);
 
 Configure::write('EmailTransport', [
@@ -83,25 +106,7 @@ Cache::setConfig([
         'duration' => '+10 seconds',
     ],
 ]);
+(new SchemaLoader())->loadSqlFiles(PLUGIN_ROOT . DS . 'tests' . DS . 'schema.sql');
 
-if (!getenv('DB_CLASS') && getenv('DB_URL')) {
-    ConnectionManager::setConfig('test', ['url' => getenv('DB_URL')]);
-
-    return;
-}
-
-if (!getenv('DB_CLASS')) {
-    putenv('DB_CLASS=Cake\Database\Driver\Sqlite');
-    putenv('DB_URL=sqlite::memory:');
-}
-
-ConnectionManager::setConfig('test', [
-    'className' => 'Cake\Database\Connection',
-    'driver' => getenv('DB_CLASS') ?: null,
-    'dsn' => getenv('DB_URL') ?: null,
-    'timezone' => 'UTC',
-    'quoteIdentifiers' => false,
-    'cacheMetadata' => true,
-]);
-
-FrozenDate::setTestNow('2021-07-10 23:11:11');
+DateTime::setTestNow('2021-07-10 23:11:11');
+session_id('cli');

@@ -3,11 +3,9 @@ declare(strict_types=1);
 
 namespace TestApp;
 
-use Avolle\Deadlinks\Plugin as DeadlinksPlugin;
+use Avolle\Deadlinks\DeadlinksPlugin;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
-use Cake\Routing\RouteBuilder;
-use Cake\Routing\Router;
 
 class Application extends BaseApplication
 {
@@ -16,11 +14,6 @@ class Application extends BaseApplication
         parent::bootstrap();
 
         $this->addPlugin(DeadlinksPlugin::class);
-    }
-
-    public function routes(RouteBuilder $routes): void
-    {
-        Router::connect('/meh', ['controller' => 'Pages', 'action' => 'home']);
     }
 
     /**

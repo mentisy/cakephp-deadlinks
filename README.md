@@ -13,11 +13,11 @@ Output methods:
 * Log file
 * Mail
 
-Works with:
-Type | Version
----- | ----
-CakePHP | 4.2
-PHP | 7.4
+## Version map:
+| Plugin | Branch | Cake | PHP          |
+|--------|--------|------|--------------|
+| 2.x    | main   | 5.x  | ^8.1         |
+| 1.x    | 1.x    | 4.x  | ^7.4 \| ^8.0 |
 
 ## Installation
 `composer require avolle/cakephp-deadlinks`

@@ -3,8 +3,10 @@
  * @var \Cake\View\View $this
  * @var \Avolle\Deadlinks\Deadlinks\ResultSet[] $result
  */
+
+use Cake\I18n\DateTime;
 ?>
-Dead Links Scan Results run <?= \Cake\I18n\FrozenTime::now()->format('Y-m-d H:i'); ?>
+Dead Links Scan Results run <?= DateTime::now()->format('Y-m-d H:i'); ?>
 
 A total of <?= count($result); ?> tables were scanned.
 

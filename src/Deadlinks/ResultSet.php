@@ -11,7 +11,7 @@ class ResultSet
     /**
      * Results
      *
-     * @var array
+     * @var array<\Avolle\Deadlinks\Deadlinks\DeadLink>
      */
     protected array $results = [];
 
@@ -20,7 +20,7 @@ class ResultSet
      *
      * @var string
      */
-    protected string $tableName = "";
+    protected string $tableName = '';
 
     /**
      * ResultSet constructor.
@@ -35,7 +35,7 @@ class ResultSet
     /**
      * Get the results
      *
-     * @return \Avolle\Deadlinks\Deadlinks\DeadLink[]
+     * @return array<\Avolle\Deadlinks\Deadlinks\DeadLink>
      */
     public function getResults(): array
     {

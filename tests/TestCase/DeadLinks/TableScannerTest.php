@@ -20,9 +20,9 @@ class TableScannerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var string[] Fixtures
+     * @var array<string> Fixtures
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'plugin.Avolle/Deadlinks.Files',
         'plugin.Avolle/Deadlinks.Links',
         'plugin.Avolle/Deadlinks.Resources',

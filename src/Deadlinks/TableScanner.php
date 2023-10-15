@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Avolle\Deadlinks\Deadlinks;
 
-use Cake\Database\Query;
 use Cake\ORM\Locator\LocatorInterface;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 
@@ -21,31 +21,14 @@ class TableScanner
     protected LocatorInterface $tableLocator;
 
     /**
-     * Table name to scan
-     *
-     * @var string
-     */
-    protected string $tableName;
-
-    /**
-     * Fields to scan
-     *
-     * @var string[]
-     */
-    protected array $fields;
-
-    /**
      * TableScanner constructor.
      *
      * @param string $tableName Table to scan
-     * @param array $fields Fields to scan
+     * @param array<string> $fields Fields to scan
      * @return void
      */
-    public function __construct(string $tableName, array $fields)
+    public function __construct(protected string $tableName, protected array $fields)
     {
-        $this->tableName = $tableName;
-        $this->fields = $fields;
-
         $this->tableLocator = TableRegistry::getTableLocator();
     }
 
@@ -53,7 +36,7 @@ class TableScanner
      * Scan table for dead links, with the given fields
      *
      * @param string $tableName Table to scan
-     * @param string[] $fields Fields to scan
+     * @param array<string> $fields Fields to scan
      * @return \Avolle\Deadlinks\Deadlinks\ResultSet
      */
     public static function scanTable(string $tableName, array $fields): ResultSet
@@ -88,10 +71,10 @@ class TableScanner
     /**
      * Fields to select in the built query
      *
-     * @param string|array $primaryKey Primary Key
+     * @param array|string $primaryKey Primary Key
      * @return array
      */
-    protected function selectFields($primaryKey): array
+    protected function selectFields(array|string $primaryKey): array
     {
         return array_merge($this->fields, (array)$primaryKey);
     }
@@ -100,9 +83,9 @@ class TableScanner
      * Find entities in the given model, selecting the fields to scan
      *
      * @param \Cake\ORM\Table $model Model
-     * @return \Cake\Database\Query
+     * @return \Cake\ORM\Query\SelectQuery
      */
-    protected function findEntities(Table $model): Query
+    protected function findEntities(Table $model): SelectQuery
     {
         $selectFields = $this->selectFields($model->getPrimaryKey());
 
