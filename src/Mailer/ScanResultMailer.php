@@ -44,6 +44,6 @@ class ScanResultMailer extends Mailer
             ->setEmailFormat('text')
             ->setViewVars(compact('result'))
             ->viewBuilder()
-                ->setTemplate('Avolle/Deadlinks.send_result');
+            ->setTemplate('Avolle/Deadlinks.send_result');
     }
 }

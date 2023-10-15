@@ -98,7 +98,7 @@ class ScanCommand extends Command
      * Scan the specified tables and return the results
      *
      * @param array $tables Tables to scan
-     * @return \Avolle\Deadlinks\Deadlinks\ResultSet[]
+     * @return array<\Avolle\Deadlinks\Deadlinks\ResultSet>
      */
     protected function scanTables(array $tables): array
     {
@@ -114,8 +114,9 @@ class ScanCommand extends Command
     /**
      * Output results into the terminal
      *
-     * @param \Avolle\Deadlinks\Deadlinks\ResultSet[] $result Scanned results
+     * @param array<\Avolle\Deadlinks\Deadlinks\ResultSet> $result Scanned results
      * @return void
+     * @uses \Avolle\Deadlinks\Command\Helper\ScanOutputHelper
      */
     protected function outputTerminal(array $result): void
     {
@@ -125,7 +126,7 @@ class ScanCommand extends Command
     /**
      * Output results into a log file
      *
-     * @param \Avolle\Deadlinks\Deadlinks\ResultSet[] $result Scanned results
+     * @param array<\Avolle\Deadlinks\Deadlinks\ResultSet> $result Scanned results
      * @return void
      */
     protected function outputLog(array $result): void
@@ -152,7 +153,7 @@ class ScanCommand extends Command
     /**
      * Output the results into an email
      *
-     * @param \Avolle\Deadlinks\Deadlinks\ResultSet[] $result Scanned results
+     * @param array<\Avolle\Deadlinks\Deadlinks\ResultSet> $result Scanned results
      * @return array
      */
     protected function sendEmail(array $result): array

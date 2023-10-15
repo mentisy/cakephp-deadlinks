@@ -36,7 +36,7 @@ class TableScanner
      * Scan table for dead links, with the given fields
      *
      * @param string $tableName Table to scan
-     * @param string[] $fields Fields to scan
+     * @param array<string> $fields Fields to scan
      * @return \Avolle\Deadlinks\Deadlinks\ResultSet
      */
     public static function scanTable(string $tableName, array $fields): ResultSet

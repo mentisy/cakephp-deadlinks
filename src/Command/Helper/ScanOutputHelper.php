@@ -19,7 +19,7 @@ class ScanOutputHelper extends Helper
      */
     public function output(array $args): void
     {
-        $this->_io->out("The following tables have dead links: ");
+        $this->_io->out('The following tables have dead links: ');
         foreach ($args as $tableResult) {
             $this->outputTable($tableResult);
         }
@@ -56,7 +56,7 @@ class ScanOutputHelper extends Helper
     /**
      * Add headers to table output
      *
-     * @return string[][]
+     * @return array<string[]>
      */
     protected function createHeaders(): array
     {

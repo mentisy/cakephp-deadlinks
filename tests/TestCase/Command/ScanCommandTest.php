@@ -22,7 +22,7 @@ class ScanCommandTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var array<string>
      */
     protected array $fixtures = [
         'plugin.Avolle/Deadlinks.Files',
