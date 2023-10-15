@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\I18n\FrozenDate;
 use Cake\Mailer\TransportFactory;
+use Cake\TestSuite\Fixture\SchemaLoader;
 
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
@@ -83,6 +84,7 @@ Cache::setConfig([
         'duration' => '+10 seconds',
     ],
 ]);
+(new SchemaLoader())->loadSqlFiles(PLUGIN_ROOT . DS . 'tests' . DS . 'schema.sql');
 
 if (!getenv('DB_CLASS') && getenv('DB_URL')) {
     ConnectionManager::setConfig('test', ['url' => getenv('DB_URL')]);
@@ -104,4 +106,3 @@ ConnectionManager::setConfig('test', [
     'cacheMetadata' => true,
 ]);
 
-FrozenDate::setTestNow('2021-07-10 23:11:11');
