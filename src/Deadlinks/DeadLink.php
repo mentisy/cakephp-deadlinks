@@ -11,47 +11,19 @@ namespace Avolle\Deadlinks\Deadlinks;
 class DeadLink
 {
     /**
-     * Field that was scanned
-     *
-     * @var string
-     */
-    protected string $field = "";
-
-    /**
-     * Value (URL) that was scanned
-     *
-     * @var string
-     */
-    protected string $value = "";
-
-    /**
-     * Primary key of the dead link row
-     *
-     * @var string|string[]
-     */
-    protected $primaryKey = "";
-
-    /**
-     * Primary key value of the dead link row
-     *
-     * @var string|string[]|int|int[]
-     */
-    protected $primaryKeyValue;
-
-    /**
      * DeadLink constructor.
      *
      * @param string $field Field of scanned link
      * @param mixed $value Value of scannede link
-     * @param string|string[] $primaryKey Primary key of row with link scanned
-     * @param string|string[]|int|int[] $primaryKeyValue Primary key value of row with link scanned
+     * @param array<string>|string $primaryKey Primary key of row with link scanned
+     * @param array<int>|array<string>|string|int $primaryKeyValue Primary key value of row with link scanned
      */
-    public function __construct(string $field, $value, $primaryKey, $primaryKeyValue)
-    {
-        $this->field = $field;
-        $this->value = $value;
-        $this->primaryKey = $primaryKey;
-        $this->primaryKeyValue = $primaryKeyValue;
+    public function __construct(
+        protected string $field,
+        protected mixed $value,
+        protected array|string $primaryKey,
+        protected array|int|string $primaryKeyValue,
+    ) {
     }
 
     /**
@@ -87,9 +59,9 @@ class DeadLink
     /**
      * Get primary key value of row that was scanned
      *
-     * @return int|int[]|string|string[]
+     * @return array<int>|array<string>|string|int
      */
-    public function getPrimaryKeyValue()
+    public function getPrimaryKeyValue(): array|int|string
     {
         return $this->primaryKeyValue;
     }

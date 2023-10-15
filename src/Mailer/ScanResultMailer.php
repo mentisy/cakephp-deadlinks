@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Avolle\Deadlinks\Mailer;
 
 use Cake\Core\Configure;
-use Cake\I18n\FrozenDate;
+use Cake\I18n\Date;
 use Cake\Mailer\Mailer;
 
 /**
@@ -17,14 +17,14 @@ class ScanResultMailer extends Mailer
      *
      * @var string
      */
-    public static $name = 'ScanResult';
+    public static string $name = 'ScanResult';
 
     /**
      * ScanResultMailer constructor.
      *
      * @param array|null $config Mailer Config
      */
-    public function __construct($config = null)
+    public function __construct(?array $config = null)
     {
         parent::__construct($config);
         $this->setTransport('default');
@@ -40,7 +40,7 @@ class ScanResultMailer extends Mailer
     {
         $this
             ->setTo(Configure::readOrFail('Deadlinks.mailRecipient'))
-            ->setSubject('Dead Links Report - ' . FrozenDate::now()->format("Y-m-d"))
+            ->setSubject('Dead Links Report - ' . Date::now()->format('Y-m-d'))
             ->setEmailFormat('text')
             ->setViewVars(compact('result'))
             ->viewBuilder()
