@@ -15,12 +15,13 @@ use Cake\Log\Log;
 /**
  * Plugin for CakePHP Deadlinks
  */
-class Plugin extends BasePlugin
+class DeadlinksPlugin extends BasePlugin
 {
     /**
      * Plugin constructor.
      *
      * @param array $options Plugin options
+     * @throws \Avolle\Deadlinks\Exception\MissingConfigException
      */
     public function __construct(array $options = [])
     {
@@ -28,10 +29,9 @@ class Plugin extends BasePlugin
 
         try {
             Configure::load('deadlinks');
-        } catch (CakeException $ex) {
+        } catch (CakeException) {
             throw new MissingConfigException(
-                'Configuration key `Deadlinks` was not found. Please add a `deadlinks.php` '
-                . 'file to your config folder.'
+                'Configuration key `Deadlinks` was not found. Please add a `deadlinks.php` file to your config folder.',
             );
         }
 
@@ -41,7 +41,6 @@ class Plugin extends BasePlugin
                 'className' => FileLog::class,
                 'path' => LOGS,
                 'file' => 'deadlinks',
-                'url' => env('LOG_DEBUG_URL'),
                 'scopes' => ['deadlinks'],
             ]);
         }
