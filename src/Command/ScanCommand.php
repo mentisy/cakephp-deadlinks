@@ -5,6 +5,7 @@ namespace Avolle\Deadlinks\Command;
 
 use Avolle\Deadlinks\Deadlinks\ResultSet;
 use Avolle\Deadlinks\Deadlinks\TableScanner;
+use Cake\Collection\Collection;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -75,7 +76,7 @@ class ScanCommand extends Command
         $result = $this->scanTables($tables);
 
         // No dead links found in any table scans. Give feedback to user and exit
-        $hasDeadlinks = collection($result)->filter(fn (ResultSet $resultSet) => !$resultSet->isEmpty());
+        $hasDeadlinks = (new Collection($result))->filter(fn (ResultSet $resultSet) => !$resultSet->isEmpty());
         if ($hasDeadlinks->isEmpty()) {
             return $io->success('No links were found to be dead.');
         }
